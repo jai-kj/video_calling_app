@@ -1,3 +1,5 @@
+import CreateMeetingPage from "@/CreateMeetingPage";
+
 export default function Home() {
-  return <>Home</>;
+  return <CreateMeetingPage />;
 }
