@@ -1,3 +1,5 @@
+import Navbar from "@/components/layout/Navbar";
+import PageLayout from "@/components/layout/PageLayout";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -18,7 +20,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <Navbar />
+          <PageLayout>{children}</PageLayout>
+        </body>
       </html>
     </ClerkProvider>
   );
