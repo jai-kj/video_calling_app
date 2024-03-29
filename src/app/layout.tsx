@@ -2,6 +2,7 @@ import Navbar from "@/components/layout/Navbar";
 import PageLayout from "@/components/layout/PageLayout";
 import { APP_META } from "@/config/constants";
 import { ClerkProvider } from "@clerk/nextjs";
+import "@stream-io/video-react-sdk/dist/css/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import ClientProvider from "./ClientProvider";
