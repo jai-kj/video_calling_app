@@ -1,5 +1,6 @@
 "use client";
 
+import { STREAM_CALL_TYPES } from "@/config/constants";
 import {
   Call,
   CallControls,
@@ -30,7 +31,7 @@ const MeetingPage = ({ id }: IMeetingPageProps) => {
         type="button"
         className=""
         onClick={async () => {
-          const call = client.call("default", id);
+          const call = client.call(STREAM_CALL_TYPES.DEFAULT, id);
           await call.join();
           setCall(call);
         }}

@@ -1,5 +1,6 @@
 "use client";
 
+import { STREAM_CALL_TYPES } from "@/config/constants";
 import { useUser } from "@clerk/nextjs";
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { Loader2 } from "lucide-react";
@@ -25,7 +26,7 @@ const CreateMeetingPage = () => {
 
     try {
       const meetingId = crypto.randomUUID();
-      const call = client.call("default", meetingId);
+      const call = client.call(STREAM_CALL_TYPES.DEFAULT, meetingId);
 
       await call.getOrCreate({
         data: {

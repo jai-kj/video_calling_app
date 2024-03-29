@@ -8,6 +8,11 @@ export const APP_ROUTES = Object.freeze({
   MEETINGS: "/meetings",
 });
 
+export const STREAM_CALL_TYPES = Object.freeze({
+  DEFAULT: "default",
+  PRIVATE: "private-meeting",
+});
+
 export const MESSAGES = Object.freeze({
   FAILURE: {
     ERROR_PAGE: "Sorry, something went wrong, Please try again later!",
