@@ -18,6 +18,7 @@ export const STREAM_CALL_MEMBER = "call_member";
 export const MESSAGES = Object.freeze({
   SUCCESS: {
     LINK_COPY: "Meeting link copied to clipboard",
+    MIC_CAM_OFF: "Join with microphone and camera off",
   },
   FAILURE: {
     ERROR_PAGE: "Sorry, something went wrong, Please try again later!",
@@ -30,5 +31,7 @@ export const MESSAGES = Object.freeze({
       "useStreamCall must be used within a Stream Call provider component with a valid call prop.",
     MEETING_NOT_STARTED: "This meeting has not started yet. It will begin at",
     MEETING_ENDED: "This meeting has ended",
+    PERMISSIONS_REQUIRED:
+      "Please allow access to your microphone and camera to join the call.",
   },
 });
