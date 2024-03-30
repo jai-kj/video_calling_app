@@ -1,10 +1,16 @@
 "use client";
 
-import { STREAM_CALL_TYPES } from "@/config/constants";
+import { getUserIdsFromEmail } from "@/app/actions";
+import { STREAM_CALL_MEMBER, STREAM_CALL_TYPES } from "@/config/constants";
 import { useUser } from "@clerk/nextjs";
-import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
+import {
+  Call,
+  MemberRequest,
+  useStreamVideoClient,
+} from "@stream-io/video-react-sdk";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
+import Button from "../layout/Button";
 import DescriptionInput from "./DescriptionInput";
 import MeetingLink from "./MeetingLink";
 import ParticipantsInput from "./ParticipantsInput";
@@ -19,6 +25,19 @@ const CreateMeetingPage = () => {
   const [participantsInput, setParticipantsInput] = useState<string>("");
   const [call, setCall] = useState<Call>();
 
+  const getParticipantsEmails = () => {
+    if (!participantsInput.trim()) return [];
+
+    const regex = new RegExp(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    );
+
+    return participantsInput.split(",").reduce((acc, email) => {
+      if (email.trim() && regex.test(email)) acc.push(email);
+      return acc;
+    }, [] as string[]);
+  };
+
   const handleCreateMeeting = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -26,10 +45,33 @@ const CreateMeetingPage = () => {
 
     try {
       const meetingId = crypto.randomUUID();
-      const call = client.call(STREAM_CALL_TYPES.DEFAULT, meetingId);
+
+      const participantEmails = getParticipantsEmails();
+      const call = client.call(
+        participantEmails.length
+          ? STREAM_CALL_TYPES.PRIVATE
+          : STREAM_CALL_TYPES.DEFAULT,
+        meetingId,
+      );
+
+      const memberIds = await getUserIdsFromEmail(participantEmails);
+      const members: MemberRequest[] = memberIds
+        .map((id) => ({
+          user_id: id,
+          role: STREAM_CALL_MEMBER,
+        }))
+        .concat({ user_id: user.id, role: STREAM_CALL_MEMBER })
+        .filter(
+          (user, index, arr) =>
+            arr.findIndex(
+              (searchUser) => searchUser.user_id === user.user_id,
+            ) === index,
+        );
 
       await call.getOrCreate({
         data: {
+          members,
+          starts_at: new Date(startTimeInput || Date.now()).toISOString(),
           custom: { description: descriptionInput.trim() },
         },
       });
@@ -63,9 +105,9 @@ const CreateMeetingPage = () => {
           value={participantsInput}
           handleUpdate={setParticipantsInput}
         />
-        <button type="submit" className="w-full" onClick={handleCreateMeeting}>
+        <Button type="submit" className="w-full" onClick={handleCreateMeeting}>
           Create meeting
-        </button>
+        </Button>
       </form>
       {call && <MeetingLink call={call} />}
     </div>

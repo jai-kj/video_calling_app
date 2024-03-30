@@ -1,51 +1,46 @@
 "use client";
 
-import { STREAM_CALL_TYPES } from "@/config/constants";
-import {
-  Call,
-  CallControls,
-  SpeakerLayout,
-  StreamCall,
-  StreamTheme,
-  useStreamVideoClient,
-} from "@stream-io/video-react-sdk";
+import { useLoadCall } from "@/app/hooks/useLoadCall";
+import { MESSAGES, STREAM_CALL_TYPES } from "@/config/constants";
+import { useUser } from "@clerk/nextjs";
+import { StreamCall, StreamTheme } from "@stream-io/video-react-sdk";
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
+import MeetingScreen from "./MeetingScreen";
 
 interface IMeetingPageProps {
   id: string;
 }
 
 const MeetingPage = ({ id }: IMeetingPageProps) => {
-  const [call, setCall] = useState<Call>();
+  const { user, isLoaded: userLoaded } = useUser();
+  const { call, callLoading } = useLoadCall(id);
 
-  const client = useStreamVideoClient();
-
-  if (!client) {
+  if (!userLoaded || callLoading) {
     return <Loader2 className="mx-auto animate-spin" />;
   }
 
   if (!call) {
     return (
-      <button
-        type="button"
-        className=""
-        onClick={async () => {
-          const call = client.call(STREAM_CALL_TYPES.DEFAULT, id);
-          await call.join();
-          setCall(call);
-        }}
-      >
-        Join meeting
-      </button>
+      <p className="text-center font-bold">{MESSAGES.FAILURE.CALL_NOT_FOUND}</p>
+    );
+  }
+
+  const notAllowedToJoin =
+    call.type === STREAM_CALL_TYPES.PRIVATE &&
+    (!user || !call.state.members.find((member) => member.user_id === user.id));
+
+  if (notAllowedToJoin) {
+    return (
+      <p className="text-center font-bold">
+        {MESSAGES.FAILURE.UNAUTHORIZED_CALL}
+      </p>
     );
   }
 
   return (
     <StreamCall call={call}>
-      <StreamTheme className="space-y-3">
-        <SpeakerLayout />
-        <CallControls />
+      <StreamTheme>
+        <MeetingScreen />
       </StreamTheme>
     </StreamCall>
   );
