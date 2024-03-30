@@ -6,6 +6,8 @@ export const APP_META = Object.freeze({
 export const APP_ROUTES = Object.freeze({
   BASE_ROUTE: "/",
   MEETINGS: "/meetings",
+  MEETING: (id: string) => `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${id}`,
+  LEFT_MEETING: (id: string) => `/meeting/${id}/left`,
 });
 
 export const STREAM_CALL_TYPES = Object.freeze({
@@ -19,6 +21,7 @@ export const MESSAGES = Object.freeze({
   SUCCESS: {
     LINK_COPY: "Meeting link copied to clipboard",
     MIC_CAM_OFF: "Join with microphone and camera off",
+    MEETING_LEFT: "You left the meeting",
   },
   FAILURE: {
     ERROR_PAGE: "Sorry, something went wrong, Please try again later!",

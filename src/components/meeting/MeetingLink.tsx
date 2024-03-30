@@ -1,4 +1,4 @@
-import { MESSAGES } from "@/config/constants";
+import { APP_ROUTES, MESSAGES } from "@/config/constants";
 import { Call } from "@stream-io/video-react-sdk";
 import { Copy } from "lucide-react";
 import Link from "next/link";
@@ -41,7 +41,7 @@ const sendMailInvite = ({
 };
 
 const MeetingLink = ({ call }: IMeetingLinkProps) => {
-  const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${call.id}`;
+  const meetingLink = APP_ROUTES.MEETING(call.id);
 
   return (
     <div className="flex flex-col items-center gap-3 text-center">
