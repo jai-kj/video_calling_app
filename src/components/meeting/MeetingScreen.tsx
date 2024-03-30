@@ -2,6 +2,7 @@ import { useStreamCall } from "@/app/hooks/useStreamCall";
 import { useCallStateHooks } from "@stream-io/video-react-sdk";
 import { useState } from "react";
 import MeetingEndedScreen from "./MeetingEndedScreen";
+import OngoingCallUI from "./OngoingCallUI";
 import SetupCallUI from "./SetupCallUI";
 import UpcomingMeetingScreen from "./UpcomingMeetingScreen";
 
@@ -33,15 +34,18 @@ const MeetingScreen = () => {
 
   return (
     <div className="space-y-6">
-      {description && (
-        <p className="text-center">
-          Meeting description: <span className="font-bold">{description}</span>
-        </p>
-      )}
       {setupComplete ? (
-        "Call UI"
+        <OngoingCallUI />
       ) : (
-        <SetupCallUI onSetupComplete={handleSetupComplete} />
+        <>
+          {description && (
+            <p className="text-center">
+              Meeting description:{" "}
+              <span className="font-bold">{description}</span>
+            </p>
+          )}
+          <SetupCallUI onSetupComplete={handleSetupComplete} />
+        </>
       )}
     </div>
   );

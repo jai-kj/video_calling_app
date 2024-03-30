@@ -35,3 +35,9 @@ export const MESSAGES = Object.freeze({
       "Please allow access to your microphone and camera to join the call.",
   },
 });
+
+export enum CallLayout {
+  HORIZONTAL = "speaker-horizontal",
+  VERTICAL = "speaker-vertical",
+  GRID = "grid",
+}
