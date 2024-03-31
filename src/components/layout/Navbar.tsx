@@ -5,7 +5,7 @@ import Link from "next/link";
 const Navbar = () => {
   return (
     <header className="shadow">
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between p-3 font-medium">
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between p-3 font-medium">
         <Link href={APP_ROUTES.BASE_ROUTE}>New Meeting</Link>
         <SignedIn>
           <div className="flex items-center gap-5">
