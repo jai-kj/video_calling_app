@@ -33,7 +33,8 @@ const CreateMeetingPage = () => {
     );
 
     return participantsInput.split(",").reduce((acc, email) => {
-      if (email.trim() && regex.test(email)) acc.push(email);
+      const emailAddress = email.trim();
+      if (emailAddress && regex.test(emailAddress)) acc.push(emailAddress);
       return acc;
     }, [] as string[]);
   };
