@@ -1,4 +1,4 @@
-import { useStreamCall } from "@/app/hooks/useStreamCall";
+import { useStreamCall } from "@/hooks/useStreamCall";
 import { MESSAGES } from "@/config/constants";
 import {
   DeviceSettings,

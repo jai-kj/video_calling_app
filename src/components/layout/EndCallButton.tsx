@@ -1,4 +1,4 @@
-import { useStreamCall } from "@/app/hooks/useStreamCall";
+import { useStreamCall } from "@/hooks/useStreamCall";
 import { useCallStateHooks } from "@stream-io/video-react-sdk";
 import { useMemo } from "react";
 import Button from "./Button";

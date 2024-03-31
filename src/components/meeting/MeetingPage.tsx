@@ -1,6 +1,6 @@
 "use client";
 
-import { useLoadCall } from "@/app/hooks/useLoadCall";
+import { useLoadCall } from "@/hooks/useLoadCall";
 import { MESSAGES, STREAM_CALL_TYPES } from "@/config/constants";
 import { useUser } from "@clerk/nextjs";
 import { StreamCall, StreamTheme } from "@stream-io/video-react-sdk";

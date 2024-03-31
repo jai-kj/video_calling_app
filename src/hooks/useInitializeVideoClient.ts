@@ -3,7 +3,7 @@ import { useUser } from "@clerk/nextjs";
 import { StreamVideoClient, User } from "@stream-io/video-react-sdk";
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
-import { getToken } from "../actions";
+import { getToken } from "../app/actions";
 
 export const useInitializeVideoClient = () => {
   const { user, isLoaded: userLoaded } = useUser();

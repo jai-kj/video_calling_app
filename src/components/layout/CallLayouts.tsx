@@ -1,4 +1,4 @@
-import { useStreamCall } from "@/app/hooks/useStreamCall";
+import { useStreamCall } from "@/hooks/useStreamCall";
 import { APP_ROUTES, CallLayout } from "@/config/constants";
 import { CallControls } from "@stream-io/video-react-sdk";
 import { useRouter } from "next/navigation";

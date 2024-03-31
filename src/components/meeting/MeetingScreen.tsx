@@ -1,4 +1,4 @@
-import { useStreamCall } from "@/app/hooks/useStreamCall";
+import { useStreamCall } from "@/hooks/useStreamCall";
 import { useUser } from "@clerk/nextjs";
 import { CallingState, useCallStateHooks } from "@stream-io/video-react-sdk";
 import { useState } from "react";
