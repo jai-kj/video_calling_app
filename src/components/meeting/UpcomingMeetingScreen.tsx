@@ -1,7 +1,6 @@
 import { useStreamCall } from "@/app/hooks/useStreamCall";
-import { APP_ROUTES, MESSAGES } from "@/config/constants";
-import Link from "next/link";
-import { buttonClassNames } from "../layout/Button";
+import { MESSAGES } from "@/config/constants";
+import GoBack from "../layout/GoBack";
 
 const UpcomingMeetingScreen = () => {
   const call = useStreamCall();
@@ -20,9 +19,7 @@ const UpcomingMeetingScreen = () => {
           <span className="font-bold">{call.state.custom.description}</span>
         </p>
       )}
-      <Link href={APP_ROUTES.BASE_ROUTE} className={buttonClassNames}>
-        Go home
-      </Link>
+      <GoBack />
     </div>
   );
 };

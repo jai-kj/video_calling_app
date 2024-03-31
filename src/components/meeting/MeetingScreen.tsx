@@ -1,23 +1,42 @@
 import { useStreamCall } from "@/app/hooks/useStreamCall";
-import { useCallStateHooks } from "@stream-io/video-react-sdk";
+import { useUser } from "@clerk/nextjs";
+import { CallingState, useCallStateHooks } from "@stream-io/video-react-sdk";
 import { useState } from "react";
 import MeetingEndedScreen from "./MeetingEndedScreen";
+import MeetingRemovedScreen from "./MeetingRemovedScreen";
 import OngoingCallUI from "./OngoingCallUI";
 import SetupCallUI from "./SetupCallUI";
 import UpcomingMeetingScreen from "./UpcomingMeetingScreen";
 
 const MeetingScreen = () => {
+  const { user } = useUser();
   const call = useStreamCall();
-  const { useCallEndedAt, useCallStartsAt } = useCallStateHooks();
+  const {
+    useCallEndedAt,
+    useCallStartsAt,
+    useCallCallingState,
+    useCallBlockedUserIds,
+  } = useCallStateHooks();
   const [setupComplete, setSetupComplete] = useState<boolean>(false);
 
   const callEndedAt = useCallEndedAt();
   const callStartsAt = useCallStartsAt();
+  const callingState = useCallCallingState();
+
+  const blockedUsers = useCallBlockedUserIds();
+  const currentParticipant = user && user.id;
 
   const callIsInFuture = callStartsAt && new Date(callStartsAt) > new Date();
   const callHasEnded = !!callEndedAt;
 
+  const callBlocked =
+    currentParticipant && blockedUsers.includes(currentParticipant);
+
   const handleSetupComplete = () => {
+    if (callingState !== CallingState.IDLE) {
+      return;
+    }
+
     call.join();
     setSetupComplete(true);
   };
@@ -28,6 +47,10 @@ const MeetingScreen = () => {
 
   if (callIsInFuture) {
     return <UpcomingMeetingScreen />;
+  }
+
+  if (callBlocked) {
+    return <MeetingRemovedScreen />;
   }
 
   const description = call.state.custom.description;

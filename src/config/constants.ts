@@ -1,6 +1,10 @@
 export const APP_META = Object.freeze({
   TITLE: "NextJs Meetings App",
   DESCRIPTION: "A video calling app built in Next.js, Stream API and ❤️",
+  MY_MEETINGS: {
+    TITLE: "My Meetings",
+    DESCRIPTION: "A list of all my meetings",
+  },
 });
 
 export const APP_ROUTES = Object.freeze({
@@ -34,8 +38,10 @@ export const MESSAGES = Object.freeze({
       "useStreamCall must be used within a Stream Call provider component with a valid call prop.",
     MEETING_NOT_STARTED: "This meeting has not started yet. It will begin at",
     MEETING_ENDED: "This meeting has ended",
+    MEETING_REMOVED: "You have been removed from this meeting",
     PERMISSIONS_REQUIRED:
       "Please allow access to your microphone and camera to join the call.",
+    MEETINGS_NOT_FOUND: "Meetings not found",
   },
 });
 
