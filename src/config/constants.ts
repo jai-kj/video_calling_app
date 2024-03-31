@@ -26,6 +26,10 @@ export const MESSAGES = Object.freeze({
     LINK_COPY: "Meeting link copied to clipboard",
     MIC_CAM_OFF: "Join with microphone and camera off",
     MEETING_LEFT: "You left the meeting",
+    RECORDINGS_NOTE: [
+      "Note: It can take upto 1 minute for new recordings to show up.",
+      "You can refresh the page to see if any new recordings are available!",
+    ],
   },
   FAILURE: {
     ERROR_PAGE: "Sorry, something went wrong, Please try again later!",
@@ -42,6 +46,9 @@ export const MESSAGES = Object.freeze({
     PERMISSIONS_REQUIRED:
       "Please allow access to your microphone and camera to join the call.",
     MEETINGS_NOT_FOUND: "Meetings not found",
+    UNAUTHORIZED_RECORDINGS:
+      "You must be logged in to view the call recordings.",
+    RECORDINGS_NOT_FOUND: "Recordings not found",
   },
 });
 
