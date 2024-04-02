@@ -3,6 +3,7 @@ import {
   BetweenHorizonalEnd,
   BetweenVerticalEnd,
   LayoutGridIcon,
+  PictureInPicture2Icon,
 } from "lucide-react";
 
 interface IToggleCallLayoutButtonGroupProps {
@@ -41,6 +42,17 @@ const ToggleCallLayoutButtonGroup = ({
       >
         <LayoutGridIcon
           className={layout !== CallLayout.GRID ? "text-gray-400" : ""}
+        />
+      </button>
+      <button
+        type="button"
+        title={CallLayout.SPEAKER_FULLSCREEN}
+        onClick={() => handleLayoutChange(CallLayout.SPEAKER_FULLSCREEN)}
+      >
+        <PictureInPicture2Icon
+          className={
+            layout !== CallLayout.SPEAKER_FULLSCREEN ? "text-gray-400" : ""
+          }
         />
       </button>
     </div>

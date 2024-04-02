@@ -56,4 +56,5 @@ export enum CallLayout {
   HORIZONTAL = "speaker-horizontal",
   VERTICAL = "speaker-vertical",
   GRID = "grid",
+  SPEAKER_FULLSCREEN = "speaker-fullscreen",
 }
