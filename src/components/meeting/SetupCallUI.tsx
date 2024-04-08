@@ -1,5 +1,5 @@
-import { useStreamCall } from "@/hooks/useStreamCall";
 import { MESSAGES } from "@/config/constants";
+import { useStreamCall } from "@/hooks/useStreamCall";
 import {
   DeviceSettings,
   useCallStateHooks,
@@ -17,7 +17,7 @@ interface ISetupCallUIProps {
 const SetupCallUI = ({ onSetupComplete }: ISetupCallUIProps) => {
   const call = useStreamCall();
   const { useCameraState, useMicrophoneState } = useCallStateHooks();
-  const [micCamDisabled, setMicCamDisabled] = useState<boolean>(false);
+  const [micCamDisabled, setMicCamDisabled] = useState<boolean>(true);
 
   const cameraState = useCameraState();
   const microphoneState = useMicrophoneState();
@@ -35,10 +35,6 @@ const SetupCallUI = ({ onSetupComplete }: ISetupCallUIProps) => {
   useEffect(() => {
     if (micCamDisabled) handleMicCamDisable();
     else handleMicCamEnable();
-
-    return () => {
-      handleMicCamDisable();
-    };
   }, [handleMicCamEnable, handleMicCamDisable, micCamDisabled]);
 
   if (
@@ -62,7 +58,7 @@ const SetupCallUI = ({ onSetupComplete }: ISetupCallUIProps) => {
           checked={micCamDisabled}
           onChange={(e) => setMicCamDisabled(e.target.checked)}
         />
-        {MESSAGES.SUCCESS.MIC_CAM_OFF}
+        {MESSAGES.SUCCESS.MIC_CAM_ON}
       </label>
       <Button onClick={onSetupComplete}>Join meeting</Button>
     </div>

@@ -11,9 +11,15 @@ const OngoingCallUI = () => {
   const { useCallCallingState } = useCallStateHooks();
   const callingState = useCallCallingState();
 
+  const handleMicCamDisable = useCallback(() => {
+    call.camera.disable();
+    call.microphone.disable();
+  }, [call.camera, call.microphone]);
+
   const closeCallIfPathChange = useCallback(() => {
     call.leave();
-  }, [call]);
+    handleMicCamDisable();
+  }, [call, handleMicCamDisable]);
 
   useNavigationEvent({ onPathChange: closeCallIfPathChange });
 
