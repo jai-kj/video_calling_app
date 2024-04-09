@@ -59,26 +59,28 @@ const ParticipantsOverSpeaker = ({
   if (!otherParticipants.length) return <></>;
   return (
     <>
-      <div className="flex justify-between bg-slate-800">
-        <button
-          type="button"
-          title="previous"
-          disabled={!hasPrev}
-          onClick={handlePrev}
-          className="text-white disabled:cursor-not-allowed disabled:text-gray-900"
-        >
-          <ChevronLeft className="h-4" />
-        </button>
-        <button
-          type="button"
-          title="next"
-          disabled={!hasNext}
-          onClick={handleNext}
-          className="text-white disabled:cursor-not-allowed disabled:text-gray-900"
-        >
-          <ChevronRight className="h-4" />
-        </button>
-      </div>
+      {(hasPrev || hasNext) && (
+        <div className="flex justify-between bg-slate-800">
+          <button
+            type="button"
+            title="previous"
+            disabled={!hasPrev}
+            onClick={handlePrev}
+            className="text-white disabled:cursor-not-allowed disabled:text-gray-900"
+          >
+            <ChevronLeft className="h-4" />
+          </button>
+          <button
+            type="button"
+            title="next"
+            disabled={!hasNext}
+            onClick={handleNext}
+            className="text-white disabled:cursor-not-allowed disabled:text-gray-900"
+          >
+            <ChevronRight className="h-4" />
+          </button>
+        </div>
+      )}
       <div className="participants-bar flex flex-col">
         {otherParticipants.slice(range.start, range.end).map((participant) => (
           <div
