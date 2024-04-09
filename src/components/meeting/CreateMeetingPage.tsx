@@ -92,7 +92,7 @@ const CreateMeetingPage = () => {
       <h1 className="text-center text-2xl font-bold">
         Welcome {user.username}!
       </h1>
-      <form className="mx-auto w-80 space-y-6 rounded-md bg-slate-100 p-5">
+      <form className="meeting-form mx-auto w-80 space-y-6 rounded-md p-5">
         <h2 className="text-xl font-bold">Create a new meeting</h2>
         <DescriptionInput
           value={descriptionInput}
