@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Us Link Video Calling App
 
-## Getting Started
+This is a Next.js application built on top of Clerk and GetStream.io.
 
-First, run the development server:
+## Description
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This application utilizes Next.js, Clerk, and GetStream.io to create a dynamic and interactive web application. Clerk is used for authentication and user management, while GetStream.io powers the real-time feeds and activity streams.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application allows users to schedule and join virtual meetings seamlessly. With its intuitive interface, users can create new meetings, join existing ones, and easily access all their previous meeting recordings with just a few clicks. Best of all, it's completely free to use, making virtual collaboration and communication hassle-free and accessible to all.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Live Demo
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Check out the live demo of the application at [https://us-link.vercel.app/](https://us-link.vercel.app/)
 
-## Learn More
+## Installation
 
-To learn more about Next.js, take a look at the following resources:
+To run this project locally, follow these steps:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.  Clone the repository:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    ```
+    git clone https://github.com/jai-kj/video_calling_app.git
+    ```
 
-## Deploy on Vercel
+2.  Navigate into the project directory:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```
+    cd video_calling_app
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3.  Install dependencies:
+
+    ```
+    npm install
+    ```
+
+    or
+
+    ```
+    yarn install
+    ```
+
+4.  Create a `.env.local` file in the root directory of the project and add your environment variables:
+
+    ```
+    NEXT_PUBLIC_BASE_URL=http://localhost:3000
+    NEXT_PUBLIC_STREAM_API_KEY=<your-stream-api-key>
+    STREAM_API_SECRET=<your-stream-api-secret>
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<your-clerk-public-key>
+    CLERK_SECRET_KEY=<your-clerk-secret-key>
+    ```
+
+5.  Run the development server:
+
+    ```
+    npm run dev
+    ```
+
+    or
+
+    ```
+    yarn dev
+    ```
+
+6.  Open http://localhost:3000 in your browser to view the application.
+
+## Technologies Used
+
+- [Next.js](https://nextjs.org/)
+- [Clerk](https://clerk.dev/)
+- [GetStream.io](https://getstream.io/)
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to this project, please fork the repository and create a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Video Tutorial
+
+For a detailed tutorial on how this project was built, check out this video: [Video Tutorial](https://www.youtube.com/watch?v=BL1ixDaanY8)
+
+## Acknowledgments
+
+Special thanks to the creator "Florian Walther" for providing the tutorial.
