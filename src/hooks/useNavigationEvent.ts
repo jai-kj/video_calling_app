@@ -15,7 +15,7 @@ export const useNavigationEvent = ({
 
   useEffect(() => {
     return () => {
-      if (effectCount++ == 1) {
+      if (effectCount++ >= 1) {
         onPathChange();
       }
     };
