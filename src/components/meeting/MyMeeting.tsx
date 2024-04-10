@@ -44,7 +44,7 @@ const MyMeeting = ({ call, user }: IMyMeetingProps) => {
         {hasEnded && " (Ended)"} &#128279;
       </Link>
       {call.type === STREAM_CALL_TYPES.PRIVATE && (
-        <label className="ml-3 rounded-full bg-blue-500 px-2 py-1 text-white">
+        <label className="my-1 ml-5 flex w-fit flex-wrap rounded-full bg-blue-500 px-2 py-1 text-white sm:my-0 sm:inline">
           &#128274; private
         </label>
       )}
