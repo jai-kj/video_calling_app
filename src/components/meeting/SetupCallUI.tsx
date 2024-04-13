@@ -58,7 +58,7 @@ const SetupCallUI = ({ onSetupComplete }: ISetupCallUIProps) => {
           checked={micCamDisabled}
           onChange={(e) => setMicCamDisabled(e.target.checked)}
         />
-        {MESSAGES.SUCCESS.MIC_CAM_ON}
+        {MESSAGES.SUCCESS.MIC_CAM_OFF}
       </label>
       <Button onClick={onSetupComplete}>Join meeting</Button>
     </div>

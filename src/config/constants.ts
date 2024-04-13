@@ -24,7 +24,7 @@ export const STREAM_CALL_MEMBER = "call_member";
 export const MESSAGES = Object.freeze({
   SUCCESS: {
     LINK_COPY: "Meeting link copied to clipboard",
-    MIC_CAM_ON: "Join with microphone and camera on",
+    MIC_CAM_OFF: "Join with microphone and camera off",
     MEETING_LEFT: "You left the meeting",
     RECORDINGS_NOTE: [
       "Note: It can take upto 1 minute for new recordings to show up.",
